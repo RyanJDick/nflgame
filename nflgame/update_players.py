@@ -119,7 +119,7 @@ def gsis_id(profile_url):
 
 
 def roster_soup(team):
-    resp = requests.get(urls['roster'], params={'team':team})
+    resp = requests.get(urls['roster'], params={'team':team}, allow_redirects=False)
     if resp.status_code != 200:
         return None
     return BeautifulSoup(resp.text, PARSER)

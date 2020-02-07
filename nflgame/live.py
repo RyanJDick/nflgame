@@ -360,9 +360,14 @@ def _update_week_number():
 
     if (curWeekResponse.ok):
         curWeekJson = curWeekResponse.json()
-        _cur_week = curWeekJson['week']
+        # _CURRENT_WEEK_ENDPOINT seems to keep counting past the superbowl
+        week = min(curWeekJson['week'], 21)
+        phase = curWeekJson['seasonType']
+        if phase == 'POST' or phase == 'PRO':
+            week -= 17
+        _cur_week = week
+        _cur_season_phase = phase
         _cur_year = curWeekJson['seasonId']
-        _cur_season_phase = curWeekJson['seasonType']
 
     # return the time for calculating when to check 
     return time.time()
