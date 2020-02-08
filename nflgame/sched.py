@@ -16,7 +16,7 @@ def calc_desired_weeks(year, phase):
     for week in range(1,18):
         desired_weeks.append(tuple([year,'REG',week]))
 
-    if phase is 'POST':
+    if phase == 'POST':
         for week in range(1,5):
             desired_weeks.append(tuple([year, 'POST', week]))
 
